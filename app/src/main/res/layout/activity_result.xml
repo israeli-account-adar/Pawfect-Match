@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/resultLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#FFEB3B"
     android:gravity="center"
-    android:padding="16dp"
-    android:background="@android:color/holo_blue_light"> <!-- Removed image background -->
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- Result Text -->
+    <!-- Existing result text (kept so current code still compiles) -->
     <TextView
         android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_marginBottom="12dp"
         android:textColor="@android:color/black"
-        android:layout_marginBottom="20dp" />
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- NEW: Recycler for dynamic Firestore breeds -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/resultsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Keep the old image view but hide it for the new flow -->
+    <ImageView
+        android:id="@+id/resultImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:srcCompat="@drawable/home_background" />
+
+    <!-- Save & Return button (unchanged) -->
+    <Button
+        android:id="@+id/saveReturnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save &amp; Return" />
 
 </LinearLayout>
-
-

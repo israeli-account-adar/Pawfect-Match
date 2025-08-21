@@ -6,35 +6,90 @@
     android:padding="16dp"
     android:background="@drawable/paw_background">
 
-    <!-- Sign Up Button (Top Left) -->
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
+    <!-- Logged-in header (big, visible only when logged in) -->
+    <LinearLayout
+        android:id="@+id/loginHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textSize="14sp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/holo_green_light"
-        android:elevation="4dp"
-        android:layout_margin="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:visibility="gone">
 
-    <!-- Find Shelters Button (Top Right) -->
-    <Button
-        android:id="@+id/findSheltersButton"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/userPhoto"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_marginEnd="12dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userStatusBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logged in"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/userEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="14sp"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Buttons row just ABOVE the title -->
+    <LinearLayout
+        android:id="@+id/topButtonsRow"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Shelters"
-        android:textSize="14sp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/holo_blue_light"
-        android:elevation="4dp"
-        android:layout_margin="20dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"/>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@id/loginHeader"
+        android:layout_marginTop="16dp">
 
-    <!-- Title and Subtitle Container  -->
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign-Up / Login"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_green_light"
+            android:elevation="4dp"
+            android:layout_marginEnd="12dp" />
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"/>
+
+
+        <Button
+            android:id="@+id/findSheltersButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Find Shelters"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:elevation="4dp" />
+    </LinearLayout>
+
+    <!-- Title and subtitle -->
     <LinearLayout
         android:id="@+id/titleContainer"
         android:layout_width="wrap_content"
@@ -42,10 +97,9 @@
         android:orientation="vertical"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/signUpButton"
-        android:layout_marginTop="300dp">
+        android:layout_below="@+id/topButtonsRow"
+        android:layout_marginTop="240dp">
 
-        <!-- Main Title -->
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
@@ -56,7 +110,6 @@
             android:textColor="@android:color/white"
             android:gravity="center"/>
 
-        <!-- Sub-Title -->
         <TextView
             android:id="@+id/subtitleText"
             android:layout_width="wrap_content"
@@ -68,7 +121,7 @@
             android:layout_marginTop="8dp"/>
     </LinearLayout>
 
-    <!-- Start Quiz Button (Directly Below Title Container) -->
+    <!-- Quiz button (unchanged) -->
     <Button
         android:id="@+id/startQuizButton"
         android:layout_width="wrap_content"

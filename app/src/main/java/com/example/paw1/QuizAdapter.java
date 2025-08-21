@@ -6,17 +6,18 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
 
-    private List<String> questions;  // List of quiz questions
-    private List<String[]> answers;  // List of answer options for each question
-    private int[] userAnswers;       // Stores the user's selected answers
+    private List<String> questions;
+    private List<String[]> answers;
+    private int[] userAnswers;
 
-    // Constructor to initialize data
     public QuizAdapter(List<String> questions, List<String[]> answers, int[] userAnswers) {
         this.questions = questions;
         this.answers = answers;
@@ -25,24 +26,19 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflate the item_question layout for each question
+    public QuizAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_question, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // Set question text
+    public void onBindViewHolder(@NonNull QuizAdapter.ViewHolder holder, int position) {
         holder.questionText.setText(questions.get(position));
-
-        // Set answer options
         holder.option1.setText(answers.get(position)[0]);
         holder.option2.setText(answers.get(position)[1]);
         holder.option3.setText(answers.get(position)[2]);
 
-        // Ensure the correct answer is selected if revisiting a question
-        holder.answerGroup.setOnCheckedChangeListener(null); // Prevents unwanted triggering
+        holder.answerGroup.setOnCheckedChangeListener(null);
         holder.answerGroup.clearCheck();
 
         if (userAnswers[position] != -1) {
@@ -50,7 +46,6 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
             holder.answerGroup.check(selectedRadioButtonId);
         }
 
-        // Save selected answer when user makes a selection
         holder.answerGroup.setOnCheckedChangeListener((group, checkedId) -> {
             View radioButton = group.findViewById(checkedId);
             int index = group.indexOfChild(radioButton);
@@ -65,7 +60,6 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.ViewHolder> {
         return questions.size();
     }
 
-    // ViewHolder class for each question item
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView questionText;
         RadioGroup answerGroup;
